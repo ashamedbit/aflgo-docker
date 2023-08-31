@@ -10,3 +10,4 @@ If you want to fuzz another project with AFLGo and this setup just modify the `.
 ## Docker Base Image
 
 Currently the Docker base image is `ubuntu:20.04`.
+`ubuntu:22.04` and `ubuntu:23.04` did *not* work out-of-the-box (compilation of LLVM 11 failed)
