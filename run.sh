@@ -4,4 +4,4 @@
 
 BUILDKIT_PROGRESS=plain docker build -t aflgo . || exit 1
 # we need --privileged to change /proc and /sys settings for AFLGo
-docker run -it --rm --privileged -v $(pwd):/io:Z aflgo ./setup_afl_and_fuzz.sh || exit 1
+docker run -it --rm --privileged aflgo || exit 1
