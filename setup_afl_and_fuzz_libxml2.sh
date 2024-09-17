@@ -39,6 +39,5 @@ $CXX  $ADDITIONAL -I./include/ -I../include/  \
 $CXX  $ADDITIONAL .libs/libxml2.a libxml2_xml_reader_for_file_fuzzer.o SAX.o entities.o encoding.o error.o parserInternals.o parser.o tree.o hash.o list.o xmlIO.o xmlmemory.o uri.o valid.o xlink.o HTMLparser.o HTMLtree.o debugXML.o xpath.o xpointer.o xinclude.o nanohttp.o nanoftp.o catalog.o globals.o threads.o c14n.o xmlstring.o buf.o xmlregexp.o xmlschemas.o xmlschemastypes.o xmlunicode.o xmlreader.o relaxng.o dict.o SAX2.o xmlwriter.o legacy.o chvalid.o pattern.o xmlsave.o xmlmodule.o schematron.o xzlib.o  -ldl -lpthread -lz -lm -o libxml2_xml_reader_for_file_fuzzer
 
 set +e
-export FIXREVERTER=""
 mkdir in; cp $SUBJECT/test/dtd* in; cp $SUBJECT/test/dtds/* in
 $AFLGO/afl-2.57b/afl-fuzz -m none -z exp -c 45m -i in -o out ./libxml2_xml_reader_for_file_fuzzer @@

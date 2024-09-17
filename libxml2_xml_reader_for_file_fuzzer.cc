@@ -40,31 +40,8 @@ void ignore (void* ctx, const char* msg, ...) {
 int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
   
   #ifdef FRCOV
-  char *fixReverterEnv = getenv("FIXREVERTER");
-  char *fixReverterToken = strtok(fixReverterEnv, " ");
-  if (fixReverterToken == NULL) {
-    for (int i = 0; i < FIXREVERTER_SIZE; i++)
-      FIXREVERTER[i] = 1;
-  } else if (!strcmp("on", fixReverterToken)) {
-    for (int i = 0; i < FIXREVERTER_SIZE; i++)
-      FIXREVERTER[i] = 0;
-    fixReverterToken = strtok(NULL, " ");
-    while (fixReverterToken != NULL) {
-      FIXREVERTER[atoi(fixReverterToken)] = 1;
-      fixReverterToken = strtok(NULL, " ");
-    }
-  } else if (!strcmp("off", fixReverterToken)) {
-    for (int i = 0; i < FIXREVERTER_SIZE; i++)
-      FIXREVERTER[i] = 1;
-    fixReverterToken = strtok(NULL, " ");
-    while (fixReverterToken != NULL) {
-      FIXREVERTER[atoi(fixReverterToken)] = 0;
-      fixReverterToken = strtok(NULL, " ");
-    }
-  } else {
-    fprintf(stderr, "[FIXREVERTER] - first token must be on or off\n");
-    exit(0);
-  }
+  for (int i = 0; i < FIXREVERTER_SIZE; i++)
+    FIXREVERTER[i] = 1;
   #endif
   xmlSetGenericErrorFunc(NULL, &ignore);
 
