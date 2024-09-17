@@ -1,5 +1,5 @@
 diff --git a/lib/common/entropy_common.c b/lib/common/entropy_common.c
-index b12944e..89dda32 100644
+index b12944e1..89dda321 100644
 --- a/lib/common/entropy_common.c
 +++ b/lib/common/entropy_common.c
 @@ -1,3 +1,7 @@
@@ -165,7 +165,7 @@ index b12944e..89dda32 100644
      /* get last non-null symbol weight (implied, total must be 2^n) */
      {   U32 const tableLog = BIT_highbit32(weightTotal) + 1;
 diff --git a/lib/common/fse_decompress.c b/lib/common/fse_decompress.c
-index 72bbead..5c48826 100644
+index 72bbead5..5c48826e 100644
 --- a/lib/common/fse_decompress.c
 +++ b/lib/common/fse_decompress.c
 @@ -1,3 +1,7 @@
@@ -249,7 +249,7 @@ index 72bbead..5c48826 100644
      cSrcSize -= NCountLength;
  
 diff --git a/lib/decompress/huf_decompress.c b/lib/decompress/huf_decompress.c
-index 3f8bd29..79eb78e 100644
+index 3f8bd297..79eb78ef 100644
 --- a/lib/decompress/huf_decompress.c
 +++ b/lib/decompress/huf_decompress.c
 @@ -1,3 +1,7 @@
@@ -350,7 +350,7 @@ index 3f8bd29..79eb78e 100644
      {   U32 const algoNb = HUF_selectDecoder(dstSize, cSrcSize);
  #if defined(HUF_FORCE_DECOMPRESS_X1)
 diff --git a/lib/decompress/zstd_decompress.c b/lib/decompress/zstd_decompress.c
-index e42872a..8b21397 100644
+index e42872ad..8b21397f 100644
 --- a/lib/decompress/zstd_decompress.c
 +++ b/lib/decompress/zstd_decompress.c
 @@ -1,3 +1,7 @@
@@ -458,7 +458,7 @@ index e42872a..8b21397 100644
          if (magic != ZSTD_MAGIC_DICTIONARY) {
              return ZSTD_refDictContent(dctx, dict, dictSize);   /* pure content mode */
 diff --git a/lib/legacy/zstd_v01.c b/lib/legacy/zstd_v01.c
-index 35d8497..b33f673 100644
+index 35d84976..b33f673a 100644
 --- a/lib/legacy/zstd_v01.c
 +++ b/lib/legacy/zstd_v01.c
 @@ -1,3 +1,7 @@
@@ -1222,7 +1222,7 @@ index 35d8497..b33f673 100644
          ip += blockSize;
          remainingSize -= blockSize;
 diff --git a/lib/legacy/zstd_v02.c b/lib/legacy/zstd_v02.c
-index 561bc41..6247745 100644
+index 561bc412..6247745b 100644
 --- a/lib/legacy/zstd_v02.c
 +++ b/lib/legacy/zstd_v02.c
 @@ -1,3 +1,7 @@
@@ -2169,7 +2169,7 @@ index 561bc41..6247745 100644
          ip += cBlockSize;
          remainingSize -= cBlockSize;
 diff --git a/lib/legacy/zstd_v03.c b/lib/legacy/zstd_v03.c
-index a1bf0fa..3cf3a88 100644
+index a1bf0fa9..3cf3a884 100644
 --- a/lib/legacy/zstd_v03.c
 +++ b/lib/legacy/zstd_v03.c
 @@ -1,3 +1,7 @@
@@ -3020,7 +3020,7 @@ index a1bf0fa..3cf3a88 100644
          ip += cBlockSize;
          remainingSize -= cBlockSize;
 diff --git a/lib/legacy/zstd_v04.c b/lib/legacy/zstd_v04.c
-index 4342330..a16c788 100644
+index 4342330e..a16c7885 100644
 --- a/lib/legacy/zstd_v04.c
 +++ b/lib/legacy/zstd_v04.c
 @@ -1,3 +1,7 @@
@@ -4002,7 +4002,7 @@ index 4342330..a16c788 100644
      ZSTD_freeDCtx(dctx);
      return regenSize;
 diff --git a/lib/legacy/zstd_v05.c b/lib/legacy/zstd_v05.c
-index 800aa15..107b32d 100644
+index 800aa15e..107b32d9 100644
 --- a/lib/legacy/zstd_v05.c
 +++ b/lib/legacy/zstd_v05.c
 @@ -1,3 +1,7 @@
@@ -5089,7 +5089,7 @@ index 800aa15..107b32d 100644
                  if (zbc->hPos) {
                      /* some data already loaded into headerBuffer : transfer into inBuff */
 diff --git a/lib/legacy/zstd_v06.c b/lib/legacy/zstd_v06.c
-index f907a3a..7c18ea6 100644
+index f907a3a7..7c18ea61 100644
 --- a/lib/legacy/zstd_v06.c
 +++ b/lib/legacy/zstd_v06.c
 @@ -1,3 +1,7 @@
@@ -5712,7 +5712,7 @@ index f907a3a..7c18ea6 100644
              zbd->stage = ZBUFFds_read;
  	    /* fall-through */
 diff --git a/lib/legacy/zstd_v07.c b/lib/legacy/zstd_v07.c
-index a83ddc9..52f996e 100644
+index a83ddc9a..52f996e7 100644
 --- a/lib/legacy/zstd_v07.c
 +++ b/lib/legacy/zstd_v07.c
 @@ -1,3 +1,7 @@
@@ -6499,7 +6499,7 @@ index a83ddc9..52f996e 100644
              zbd->stage = ZBUFFds_read;
              /* pass-through */
 diff --git a/tests/fuzz/stream_decompress.c b/tests/fuzz/stream_decompress.c
-index 68e120d..c93c76f 100644
+index 68e120d7..321437bb 100644
 --- a/tests/fuzz/stream_decompress.c
 +++ b/tests/fuzz/stream_decompress.c
 @@ -1,3 +1,7 @@
@@ -6510,7 +6510,7 @@ index 68e120d..c93c76f 100644
  /*
   * Copyright (c) 2016-present, Facebook, Inc.
   * All rights reserved.
-@@ -49,8 +53,42 @@ static ZSTD_inBuffer makeInBuffer(const uint8_t **src, size_t *size)
+@@ -49,8 +53,19 @@ static ZSTD_inBuffer makeInBuffer(const uint8_t **src, size_t *size)
    return buffer;
  }
  
@@ -6524,31 +6524,8 @@ index 68e120d..c93c76f 100644
  {
 +    
 +    #ifdef FRCOV
-+    char *fixReverterEnv = getenv("FIXREVERTER");
-+    char *fixReverterToken = strtok(fixReverterEnv, " ");
-+    if (fixReverterToken == NULL) {
-+      for (int i = 0; i < FIXREVERTER_SIZE; i++)
++    for (int i = 0; i < FIXREVERTER_SIZE; i++)
 +        FIXREVERTER[i] = 1;
-+    } else if (!strcmp("on", fixReverterToken)) {
-+      for (int i = 0; i < FIXREVERTER_SIZE; i++)
-+        FIXREVERTER[i] = 0;
-+      fixReverterToken = strtok(NULL, " ");
-+      while (fixReverterToken != NULL) {
-+        FIXREVERTER[atoi(fixReverterToken)] = 1;
-+        fixReverterToken = strtok(NULL, " ");
-+      }
-+    } else if (!strcmp("off", fixReverterToken)) {
-+      for (int i = 0; i < FIXREVERTER_SIZE; i++)
-+        FIXREVERTER[i] = 1;
-+      fixReverterToken = strtok(NULL, " ");
-+      while (fixReverterToken != NULL) {
-+        FIXREVERTER[atoi(fixReverterToken)] = 0;
-+        fixReverterToken = strtok(NULL, " ");
-+      }
-+    } else {
-+      fprintf(stderr, "[FIXREVERTER] - first token must be on or off\n");
-+      exit(0);
-+    }
 +    #endif
      seed = FUZZ_seed(&src, &size);
  
