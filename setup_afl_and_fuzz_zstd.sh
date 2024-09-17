@@ -8,7 +8,7 @@ mkdir obj-aflgo; mkdir obj-aflgo/temp
 export SUBJECT=$PWD; export TMP_DIR=$PWD/obj-aflgo/temp
 export CC=$AFLGO/instrument/aflgo-clang; export CXX=$AFLGO/instrument/aflgo-clang++
 export LDFLAGS=-lpthread
-export ADDITIONAL="-targets=$TMP_DIR/BBtargets.txt -outdir=$TMP_DIR -flto -fuse-ld=gold -Wl,-plugin-opt=save-temps -DFRCOV"
+export ADDITIONAL="-targets=$TMP_DIR/BBtargets.txt -outdir=$TMP_DIR -flto -fuse-ld=gold -Wl,-plugin-opt=save-temps -DFRCOV -ggdb -fsanitize=address"
 
 
 mv /work_dir/BBtargets-zstd.txt $TMP_DIR/BBtargets.txt
@@ -22,7 +22,7 @@ cat $TMP_DIR/BBcalls.txt | sort | uniq > $TMP_DIR/BBcalls2.txt && mv $TMP_DIR/BB
 $AFLGO/distance/gen_distance_orig.sh $SUBJECT/tests/fuzz $TMP_DIR ./stream_decompress
 
 set +e
-export ADDITIONAL="-distance=$TMP_DIR/distance.cfg.txt -DFRCOV" CXXFLAGS="-distance=$TMP_DIR/distance.cfg.txt -DFRCOV"
+export ADDITIONAL="-distance=$TMP_DIR/distance.cfg.txt -DFRCOV -fsanitize=address"
 # make clean; make CC="$CC -distance=$TMP_DIR/distance.cfg.txt -DFRCOV" CXXFLAGS="-distance=$TMP_DIR/distance.cfg.txt -DFRCOV"
 
 make clean; cd tests/fuzz; CC="$CC $ADDITIONAL" CXX="$CXX $ADDITIONAL" python3 fuzz.py build stream_decompress; make corpora
