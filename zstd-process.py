@@ -9,7 +9,6 @@ import threading
 import time
 from multiprocessing import Pool
 from pathlib import Path
-import yaml
 import timeout_decorator
 from tqdm import tqdm
 
@@ -146,8 +145,7 @@ def afl_crash_dir(path):
         return dir_list
     for directory in os.listdir(path):
         if os.path.isdir(os.path.join(path,directory)):
-            if directory.startswith("crashes"):
-                dir_list.append(os.path.join(path,directory))
+            dir_list.append(os.path.join(path,directory))
     return dir_list
 
 
@@ -156,6 +154,7 @@ def afl_crash_dir(path):
 bin_file = "./zstd/tests/fuzz/stream_decompress"
 outpath = "./aflgo-fuzz-seeds/zstd-fuzz-noseeds-7days"
 for directory in afl_crash_dir(outpath):
+    print(directory)
     check_crashes(bin_file, directory)
 
 import pickle
@@ -167,8 +166,8 @@ with open('zstd-vars.pkl', 'wb') as f:  # Python 3: open(..., 'wb')
     pickle.dump([trig_bugs, reach_bugs, crashes, crash_types], f)
 
 # print(dict(sorted(trig_bugs.items())))
-_, max_value = min(trig_bugs.values()), max(trig_bugs.values())
-min_value, _ = min(reach_bugs.values()), max(reach_bugs.values())
+max_value = max(trig_bugs.values())
+min_value = min(reach_bugs.values())
 print(min_value, max_value)  # Output: 5 30
 # print(dict(sorted(reach_bugs.items())))
 # print(dict(sorted(crashes.items())))
