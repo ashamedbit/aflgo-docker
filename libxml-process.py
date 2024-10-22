@@ -171,7 +171,8 @@ with open('libxml-vars.pkl', 'wb') as f:  # Python 3: open(..., 'wb')
     pickle.dump([trig_bugs, reach_bugs, crashes, crash_types], f)
 
 # print(dict(sorted(trig_bugs.items())))
-min_value, max_value = min(trig_bugs.values()), max(trig_bugs.values())
+_, max_value = min(trig_bugs.values()), max(trig_bugs.values())
+min_value, _ = min(reach_bugs.values()), max(reach_bugs.values())
 print(min_value, max_value)  # Output: 5 30
 # print(dict(sorted(reach_bugs.items())))
 # print(dict(sorted(crashes.items())))
