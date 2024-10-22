@@ -3,8 +3,8 @@
 set -euo pipefail
 
 export AFLGO=/aflgo
-# git clone https://gitlab.gnome.org/GNOME/libxml2.git
-cd libxml2; git checkout 99a864a1f7a9cb59865f803770d7d62fb47cad69; git apply /work_dir/libxml-injection.patch; mv ../libxml2_xml_reader_for_file_fuzzer.cc . ; mv ../fuzzer_temp_file.h .
+git clone https://gitlab.gnome.org/GNOME/libxml2.git
+cd libxml2; git checkout 99a864a1f7a9cb59865f803770d7d62fb47cad69; git apply ../libxml-injection.patch; cp ../libxml2_xml_reader_for_file_fuzzer.cc . ; cp ../fuzzer_temp_file.h .
 mkdir obj-aflgo; mkdir obj-aflgo/temp
 export SUBJECT=$PWD; export TMP_DIR=$PWD/obj-aflgo/temp
 export CC=$AFLGO/instrument/aflgo-clang; export CXX=$AFLGO/instrument/aflgo-clang++
@@ -18,7 +18,7 @@ export ADDITIONAL="-targets=$TMP_DIR/BBtargets.txt -outdir=$TMP_DIR -flto -fuse-
 # cat $TMP_DIR/commit.diff |  $TMP_DIR/showlinenum.awk show_header=0 path=1 | grep -e "\.[ch]:[0-9]*:+" -e "\.cpp:[0-9]*:+" -e "\.cc:[0-9]*:+" | cut -d+ -f1 | rev | cut -c2- | rev > $TMP_DIR/BBtargets.txt
 
 
-mv /work_dir/BBtargets-libxml.txt $TMP_DIR/BBtargets.txt
+cp ../BBtargets-libxml.txt $TMP_DIR/BBtargets.txt
 ./autogen.sh; make distclean
 cd obj-aflgo;  CC="$CC $ADDITIONAL" CXX="$CXX $ADDITIONAL" ../configure --disable-shared --prefix=`pwd`
 make clean; make V=1 CC="$CC $ADDITIONAL" CXX="$CXX $ADDITIONAL"
