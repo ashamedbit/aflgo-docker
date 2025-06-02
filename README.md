@@ -3,18 +3,18 @@
 ## General
 
 This sets up a Docker environment to build AFLGo and run the bug injected versions of libxml2, zstd and PROJ examples.
-
+Exexute the below commands to setup docker environment for setting up AFLGo. Note that if you build everything for the first time it will take quite long (since AFLGo is built from source) ☕
 
 ```bash
 git clone https://github.com/ashamedbit/aflgo-docker.git
 cd aflgo-docker
-docker build -t aflgo . 
+docker build -t aflgo .
+docker run -it aflgo
 ```
 
-Just execute `./run.sh` to get going. Note that if you build everything for the first time it will take quite long ☕
-If you want to fuzz another project with AFLGo and this setup just modify the `./setup_afl_and_fuzz.sh` file below the `project specific steps` comment.
+After running above commands you should be in docker environment. Now run the following commands to run AFLGo on each project
+1. zstd: `setup_afl_and_fuzz_zstd.sh`
+2. libxml2: `setup_afl_and_fuzz_libxml2.sh`
+3. PROJ: `setup_afl_and_fuzz_PROJ.sh`
 
-## Docker Base Image
-
-Currently the Docker base image is `ubuntu:20.04`.
-`ubuntu:22.04` and `ubuntu:23.04` did *not* work out-of-the-box (compilation of LLVM 11 failed)
+Running each of above should get AFLGo running on the bug injected version of each project.
