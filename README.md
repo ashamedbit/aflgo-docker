@@ -17,4 +17,4 @@ After running above commands you should be in docker environment. Now run the fo
 2. libxml2: `bash setup_afl_and_fuzz_libxml2.sh`
 3. PROJ: `bash setup_afl_and_fuzz_PROJ.sh`
 
-Running each of above should get AFLGo running on the bug injected version of each project. Use Ctl+C to exit Afl-Go because it will indefinitely keep fuzzing once started!
+Running each of above should get AFLGo running on the bug injected version of each project. Use Ctl+C to exit AFLGo because it will indefinitely keep fuzzing once started!
